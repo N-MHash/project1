@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+<h2 style="text-align: center; margin-top: 15px"> Book Details </h2>
+<hr></hr>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+      <div class="card mx-auto border-light" style="width: 20rem;">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><h6>ISBN: <span class="badge badge-info">{{ book.isbn }}</span></h6></li>
+          <div class="card-body">
+            <h5 class="card-title">{{ book.title }}</h5>
+
+            <h6 class="card-subtitle mb-2 text-muted">
+              {{ book.year }}
+              <p>by {{ book.author }}</p>
+            </h6>
+
+            <hr>
+
+            <h5><span class="badge badge-light">Goodreads Statistics</span></h5>
+            <p>Average rating: </p>
+            <p>Number of ratings: </p>
+          </div>
+        </ul>
+      </div>
+  <div class="col-md" id="review_form">
+    {% if reviewed == False %}
+      <h5>Review the book</h5>
+      <hr></hr>
+      <form action="{{url_for('book', isbn=book.isbn)}}", method="post">
+        <div class="form-group">
+          <select class="custom-select" name="review_rating" required>
+            <option value="">Choose a rating...</option>
+            <option value="1">1 star</option>
+            <option value="2">2 stars</option>
+            <option value="3">3 stars</option>
+            <option value="4">4 stars</option>
+            <option value="5">5 stars</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Comment</span>
+          </div>
+          <textarea class="form-control" name="review_comment" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary my-1">Submit</button>
+      </form>
+    {% else %}
+      <h5>You've already reviewed this book.</h5>
+      <hr>
+      <h2 style="text-align: center; margin: auto;">You gave this book <span class="badge badge-pill badge-warning">{{ rating }}/5</span></h2>
+    {% endif %}
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <h5 style="margin-top: 30px">Users reviews:</h5>
+    <hr></hr>
+    <div class="col-8 mx-auto">
+      {% for user_review in reviews %}
+      <ul class="list-unstyled">
+        <li class="media">
+          <div class="media-body">
+            <h5 class="mt-0 mb-1">
+              {{ user_review.username }} <span class="badge badge-pill badge-warning">{{ user_review.review_rating }}/5</span>
+            </h5>
+            {{ user_review.review_comment }}
+          </div>
+        </li>
+      </ul>
+      <hr>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

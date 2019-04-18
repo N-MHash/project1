@@ -10,7 +10,7 @@
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/">Book Reviews | </a>
-            {% if session["current_user"] == [] %}
+            {% if (session["current_user"] == [] or session["current_user"] == None) %}
             <div class="btn-group" role="group">
               <a href="{{ url_for('login') }}" class="btn btn-secondary">Login</a>
               <a href="{{ url_for('signup') }}" class="btn btn-secondary">Signup</a>
@@ -36,6 +36,9 @@
               </div>
             {% endif %}
         </nav>
+        
+        {% block page_title %}
+        {% endblock %}
 
         {% for message in get_flashed_messages() %}
         <div class="alert alert-warning" role="alert">

@@ -2,9 +2,14 @@
 
 {% block title %}Sign-up{% endblock %}
 
+{% block page_title %}
+<h2 style="text-align: center; margin-top: 15px">Register</h2>
+<hr></hr>
+{% block page_title %}
+
 {% block body %}
 <div class="row">
-  <h2 style="margin: auto; padding-top: 20px; padding-bottom: 20px;">Register</h2>
+
 </div>
 
 <form action="{{ url_for('signup') }}" method="post">

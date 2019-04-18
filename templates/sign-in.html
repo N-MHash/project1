@@ -2,11 +2,12 @@
 
 {% block title %}Sign-in{% endblock %}
 
-{% block body %}
-<div class="row">
-  <h2 style="margin: auto; padding-top: 20px; padding-bottom: 20px;">Login</h2>
-</div>
+{% block page_title %}
+<h2 style="text-align: center; margin-top: 15px">Login</h2>
+<hr></hr>
+{% endblock %}
 
+{% block body %}
 <form action="{{ url_for('login') }}" method="post">
   <div class="form-group">
     <input type="text" class="form-control" name="user" placeholder="Username" required>
