@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% if session["current_user"] == [] %}
+
+{% else %}
+<div style="text-align: center; margin-top: 30px">
+<h2>Hello there, <span class="badge badge-secondary">{{ user }}</span>! It's empty, isn't it? (:</h2>
+<p> Start searching for a book. </p>
+</div>
+{% endif %}
+{% endblock %}

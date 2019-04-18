@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}Sign-up{% endblock %}
+
+{% block body %}
+<div class="row">
+  <h2 style="margin: auto; padding-top: 20px; padding-bottom: 20px;">Register</h2>
+</div>
+
+<form action="{{ url_for('signup') }}" method="post">
+  <div class="form-group">
+    <input type="text" class="form-control" name="user" placeholder="Username" required>
+  </div>
+  <div class="form-group">
+    <input type="password" class="form-control" name="pass" placeholder="Password" required>
+  </div>
+  <button class="btn btn-primary btn-block" action="{{ url_for('login') }}">Sign up</button>
+  <small class="form-text text-muted" style="text-align: center; margin-top: 15px;"><a href="{{ url_for('login') }}">Already have an account? Sign in!</a></small>
+</form>
+{% endblock %}

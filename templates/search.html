@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="row">
+{% for found in result %}
+  <div class="col-4">
+    <div class="card text-center">
+      <div class="card-body">
+        <h5 class="card-title">"{{ found.title }}"</h5>
+        <p class="card-text">by {{ found.author }}</p>
+        <p class="card-text">ISBN: {{ found.isbn }}</p>
+        <a href="#" class="btn btn-primary">Review</a>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
+{% endblock %}
