@@ -133,4 +133,4 @@ def book(isbn):
             flash("Review added successfully")
             return redirect(url_for('book', isbn=isbn))
 
-    return render_template("book.html", book=book, reviewed=reviewed, rating=rating, reviews=reviews)
+    return render_template("book.html", book=book, reviewed=reviewed, rating=rating, reviews=reviews, user=session.get('current_user'))
