@@ -54,26 +54,27 @@
       <hr>
       <h2 style="text-align: center; margin: auto;">You rated this book <span class="badge badge-pill badge-warning">{{ rating }}/5</span></h2>
     {% endif %}
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <h5 style="margin-top: 30px">Users reviews:</h5>
-    <hr></hr>
-    <div class="col-8 mx-auto">
-      {% for user_review in reviews %}
-      <ul class="list-unstyled">
-        <li class="media">
-          <div class="media-body">
-            <h5 class="mt-0 mb-1">
-              {{ user_review.username }} <span class="badge badge-pill badge-warning">{{ user_review.review_rating }}/5</span>
-            </h5>
-            {{ user_review.review_comment }}
-          </div>
-        </li>
-      </ul>
-      <hr>
-      {% endfor %}
+
+    <div class="row">
+      <div class="col">
+        <h5 style="margin-top: 30px">Users reviews:</h5>
+        <hr></hr>
+        <div class="col-8 mx-auto">
+          {% for user_review in reviews %}
+          <ul class="list-unstyled">
+            <li class="media">
+              <div class="media-body">
+                <h5 class="mt-0 mb-1">
+                  {{ user_review.username }} <span class="badge badge-pill badge-warning">{{ user_review.review_rating }}/5</span>
+                </h5>
+                {{ user_review.review_comment }}
+              </div>
+            </li>
+          </ul>
+          <hr>
+          {% endfor %}
+        </div>
+      </div>
     </div>
   </div>
 </div>
