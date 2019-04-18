@@ -35,7 +35,8 @@ def signup():
         username = request.form.get("user")
         password = request.form.get("pass")
 
-        if db.execute("SELECT * FROM public.user WHERE username = :username", {"username": username}).rowcount != 0:
+        # Can someone bypass this to create duplicate usernames?
+        if db.execute("SELECT * FROM public.user WHERE username = :username LIMIT 1", {"username": username}).rowcount != 0:
             flash('Whoops! This username is already taken!')
 
         else:
@@ -69,12 +70,15 @@ def logout():
 
 @app.route("/search", methods=["GET"])
 def search():
-    search = request.args["keywords"]
-    if search == "":
+    if session.get("current_user") == []:
         return redirect(url_for('index'))
     else:
-        result = db.execute("SELECT * from public.book WHERE (isbn LIKE :search) OR (title LIKE :search) OR (author LIKE :search)", {"search": '%' + search + '%'})
+        search = request.args["keywords"]
+        if search == "":
+            return redirect(url_for('index'))
+        else:
+            result = db.execute("SELECT * from public.book WHERE (isbn LIKE :search) OR (title LIKE :search) OR (author LIKE :search)", {"search": '%' + search + '%'})
 
-        flash(f"{result.rowcount} match(es) found for '{search}'")
+            flash(f"{result.rowcount} match(es) found for '{search}'")
 
-        return render_template("search.html", result=result, user=session["current_user"])
+            return render_template("search.html", result=result, user=session["current_user"])
