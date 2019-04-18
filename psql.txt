@@ -1,1 +1,0 @@
-postgres://uzxmshvkwxjrcb:d8e3fa68d98ee8f60432d24e03fbaad8ac4c37aa7b48f792329066c9dea2e217@ec2-79-125-2-142.eu-west-1.compute.amazonaws.com:5432/d2848raolfgoir
