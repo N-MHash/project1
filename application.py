@@ -97,9 +97,7 @@ def book(isbn):
         return redirect(url_for('index'))
 
     # Display user reviews
-    # reviews = db.execute("SELECT * FROM public.user_book_review WHERE book_isbn = :isbn", {"isbn": isbn})
     reviews = db.execute("SELECT username, review_comment, review_rating FROM public.user FULL OUTER JOIN public.user_book_review ON public.user.id = public.user_book_review.username_id WHERE book_isbn = :isbn", {"isbn": isbn})
-#    reviewer = db.execute("SELECT username FROM public.user WHERE id = :user_id", {"user_id": reviews.username_id})
 
     # Check if current user already reviewed the book
     cur = db.execute("SELECT * FROM public.user_book_review WHERE (username_id = :user_id) AND (book_isbn = :isbn)", {"user_id": user_id, "isbn": isbn})
