@@ -9,7 +9,7 @@
 <div class="row">
       <div class="card mx-auto border-light" style="width: 20rem;">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><h6>ISBN: <span class="badge badge-info">{{ book.isbn }}</span></h6></li>
+          <li class="list-group-item"><h6>ISBN: {{ book.isbn }}</h6></li>
           <div class="card-body">
             <h5 class="card-title">{{ book.title }}</h5>
 
@@ -21,8 +21,8 @@
             <hr>
 
             <h5><span class="badge badge-light">Goodreads Statistics</span></h5>
-            <h6>Average rating: {{ review_statistics["avg_rating"] }}</h6>
-            <h6>Number of ratings: {{ review_statistics["rating_count"] }}</h6>
+            <h6>Average rating: <span class="badge badge-warning">{{ review_statistics["avg_rating"] }}/5</span></h6>
+            <h6>Number of ratings: <span class="badge badge-secondary">{{ review_statistics["rating_count"] }}</span></h6>
           </div>
         </ul>
       </div>
