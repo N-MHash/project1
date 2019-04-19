@@ -1,5 +1,6 @@
 import os
 import requests
+from goodreads import GoodreadsAPI
 
 from flask import Flask, session, render_template, request, flash, redirect, url_for
 from flask_session import Session
@@ -96,6 +97,10 @@ def book(isbn):
         flash("This book doesn't exist in our database")
         return redirect(url_for('index'))
 
+    else: # Fetch book statistics from GoodreadsAPI
+        review_statistics = GoodreadsAPI.review_data_isbn(isbn)
+
+
     # Display user reviews
     reviews = db.execute("SELECT username, review_comment, review_rating FROM public.user FULL OUTER JOIN public.user_book_review ON public.user.id = public.user_book_review.username_id WHERE book_isbn = :isbn", {"isbn": isbn})
 
@@ -131,4 +136,4 @@ def book(isbn):
             flash("Review added successfully")
             return redirect(url_for('book', isbn=isbn))
 
-    return render_template("book.html", book=book, reviewed=reviewed, rating=rating, reviews=reviews, user=session.get('current_user'))
+    return render_template("book.html", book=book, reviewed=reviewed, rating=rating, reviews=reviews, review_statistics=review_statistics, user=session.get('current_user'))
