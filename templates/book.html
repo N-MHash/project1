@@ -60,10 +60,11 @@
         <h4 style="margin-top: 30px">Users reviews</h4>
         {% if review_count > 0 %}
         <h6 class="text-muted">{{ review_count }} users reviewed this book, with an average rating of {{ average_score }}/5</h6>
+        <hr>
         {% else %}
-        <h6 class="text-muted">No reviews for this book yet.</h6>
+        <hr>
+        <h6 class="text-muted" style="text-align: center;">No reviews for this book yet.</h6>
         {% endif %}
-        <hr></hr>
         <div class="col-8 mx-auto">
           {% for user_review in reviews %}
           <ul class="list-unstyled">
